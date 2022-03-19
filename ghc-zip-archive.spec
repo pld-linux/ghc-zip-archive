@@ -7,7 +7,7 @@ Summary:	Library for creating and modifying zip archives
 Summary(pl.UTF-8):	Biblioteka do tworzenia i modyfikowania archiwów zip
 Name:		ghc-%{pkgname}
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/zip-archive
