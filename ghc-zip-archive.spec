@@ -100,8 +100,8 @@ Requires:	ghc-time-prof
 Requires:	ghc-zlib-prof
 
 %description prof
-Profiling %{pkgname} library for GHC. Should be installed when
-GHC's profiling subsystem is needed.
+Profiling %{pkgname} library for GHC. Should be installed when GHC's
+profiling subsystem is needed.
 
 %description prof -l pl.UTF-8
 Biblioteka profilująca %{pkgname} dla GHC. Powinna być zainstalowana
@@ -130,6 +130,7 @@ runhaskell Setup.hs configure -v2 \
 	--docdir=%{_docdir}/%{name}-%{version}
 
 runhaskell Setup.hs build
+
 runhaskell Setup.hs haddock --executables
 
 %install
@@ -140,8 +141,7 @@ runhaskell Setup.hs copy --destdir=$RPM_BUILD_ROOT
 
 # work around automatic haddock docs installation
 %{__rm} -rf %{name}-%{version}-doc
-cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
 
 runhaskell Setup.hs register \
 	--gen-pkg-config=$RPM_BUILD_ROOT%{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
@@ -157,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE
+%doc LICENSE README.markdown changelog
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSzip-archive-%{version}-*.so
